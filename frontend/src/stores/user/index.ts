@@ -5,9 +5,9 @@ export const userSlice = createSlice({
   initialState: {
     isSignIn: false,
     userName: '',
-    photoURL: ''
+    photoURL: '',
   },
-  reducers: {}
+  reducers: {},
 });
 
 export default userSlice.reducer;
