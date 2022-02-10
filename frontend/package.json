@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.2",
+    "axios": "^0.25.0",
     "destyle.css": "^3.0.2",
     "next": "12.0.10",
     "react": "17.0.2",
