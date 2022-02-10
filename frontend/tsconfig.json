@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,31 +14,16 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "types": ["@emotion/react/types/css-prop"],
     "baseUrl": "./src",
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@atoms": [
-        "./components/atoms"
-      ],
-      "@molecures": [
-        "./components/molecures"
-      ],
-      "@organisms": [
-        "./components/organisms"
-      ],
-      "@templates": [
-        "./components/templates"
-      ],
+      "@/*": ["./*"],
+      "@atoms": ["./components/atoms"],
+      "@molecures": ["./components/molecures"],
+      "@organisms": ["./components/organisms"],
+      "@templates": ["./components/templates"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
