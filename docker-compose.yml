@@ -17,7 +17,7 @@ services:
     working_dir: /api
     volumes:
       - ./backend:/api
-      - ./common:/common
+      - ./frontend/src/graphql:/graphql
     stdin_open: true
     tty: true
     ports:
