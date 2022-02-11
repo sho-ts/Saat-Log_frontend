@@ -2,9 +2,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,node,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,node,macos
 
-db/
-
-proxy/nginx/log
 
 ### macOS ###
 # General
@@ -73,6 +70,9 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
+# production
+/build
+
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 
@@ -88,6 +88,9 @@ web_modules/
 
 # Optional npm cache directory
 .npm
+
+# vercel
+.vercel
 
 # Optional eslint cache
 .eslintcache
@@ -109,6 +112,7 @@ web_modules/
 
 # dotenv environment variables file
 .env
+.env.local
 .env.test
 .env.production
 
