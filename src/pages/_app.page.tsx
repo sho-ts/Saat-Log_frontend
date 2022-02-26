@@ -20,6 +20,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       <Global
         styles={css`
           body {
+            background-color: #f5f5ff;
             font-size: 14px;
             font-family: 'Noto Sans JP', sans-serif;
           }

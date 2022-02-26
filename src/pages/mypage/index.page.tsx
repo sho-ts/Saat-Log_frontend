@@ -18,7 +18,7 @@ const Mypage = () => {
             <ul>
               <TaskItem name="タスク1" progress={20} />
               <TaskItem name="タスク2" progress={30} />
-              <TaskItem name="タスク3" progress={20} />
+              <TaskItem name="タスク3" progress={20} isActive />
             </ul>
           </section>
         </Container>
