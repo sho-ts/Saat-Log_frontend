@@ -31,7 +31,9 @@ const Nav: React.FC<Props> = ({ isOpen, menu, handleNavOpen, handleNavClose }) =
         >
           <ul css={styles.menu}>
             {menu.map((item, index) => (
-              <NavItem key={index} Icon={item.icon}>{item.innerHTML}</NavItem>
+              <NavItem key={index} onClick={handleNavClose} href={item.href} Icon={item.icon}>
+                {item.innerHTML}
+              </NavItem>
             ))}
           </ul>
         </div>

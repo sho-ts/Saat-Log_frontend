@@ -17,8 +17,8 @@ const NAV_ITEMS = {
     { href: '/', icon: HiOutlineMail, innerHTML: 'お問い合わせ', },
   ],
   GUEST: [
-    { href: '/', icon: FaUserPlus, innerHTML: '新規登録', },
-    { href: '/', icon: FiLogIn, innerHTML: 'ログイン', },
+    { href: '/signup', icon: FaUserPlus, innerHTML: '新規登録', },
+    { href: '/signin', icon: FiLogIn, innerHTML: 'ログイン', },
     { href: '/', icon: HiOutlineMail, innerHTML: 'お問い合わせ', },
   ]
 }

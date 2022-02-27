@@ -1,12 +1,14 @@
 import type { IconType } from 'react-icons';
 import { css } from '@emotion/react';
+import Link from 'next/link';
 
 type Props = {
   Icon: IconType;
   onClick?: any;
+  href: string,
 };
 
-const NavIcon: React.FC<Props> = ({ Icon, children, onClick }) => {
+const NavIcon: React.FC<Props> = ({ Icon, children, onClick, href }) => {
   return (
     <li
       onClick={onClick}
@@ -20,28 +22,34 @@ const NavIcon: React.FC<Props> = ({ Icon, children, onClick }) => {
         cursor: pointer;
       `}
     >
-      <div
-        css={css`
-          height: 70px;
-          width: 70px;
-          border-radius: 50%;
-          box-shadow: -4px -4px 8px #ffffff, 4px 4px 8px rgba(100, 100, 150, 0.2);
-          margin-bottom: 12px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        `}
-      >
-        <Icon size='28' />
-      </div>
-      <span
-        css={css`
+      <Link href={href} passHref>
+        <a css={css`
           display: block;
-          font-weight: bold;
-        `}
-      >
-        {children}
-      </span>
+        `}>
+          <div
+            css={css`
+              height: 70px;
+              width: 70px;
+              border-radius: 50%;
+              box-shadow: -4px -4px 8px #ffffff, 4px 4px 8px rgba(100, 100, 150, 0.2);
+              margin-bottom: 12px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            `}
+          >
+            <Icon size='28' />
+          </div>
+          <span
+            css={css`
+              display: block;
+              font-weight: bold;
+            `}
+          >
+            {children}
+          </span>
+        </a>
+      </Link>
     </li>
   );
 };
