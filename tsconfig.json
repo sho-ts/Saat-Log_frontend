@@ -18,6 +18,7 @@
     "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"],
+      "@layouts": ["./pages/_layouts"],
       "@atoms": ["./components/atoms"],
       "@molecures": ["./components/molecures"],
       "@organisms": ["./components/organisms"],
