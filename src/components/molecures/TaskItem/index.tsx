@@ -96,7 +96,7 @@ const TaskItem: React.FC<Props> = ({ name, target, progress, startedAt, isActive
 
 const getShadow = (isActive?: boolean) => css`
   box-shadow: ${isActive
-    ? 'inset -4px -4px 6px #fff, inset 4px 4px 6px rgba(50, 50, 150, 0.1)'
+    ? 'inset -4px -4px 2px #fff, inset 4px 4px 4px rgba(50, 50, 150, 0.1)'
     : '-4px -4px 8px #ffffff, 4px 4px 8px rgba(100, 100, 150, 0.2)'};
 `;
 
