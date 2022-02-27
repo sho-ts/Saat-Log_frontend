@@ -77,7 +77,6 @@ const styles = {
     transition: all 0.4s;
     width: calc(100% - 24px);
     max-width: 360px;
-    height: calc(100% - 80px);
     max-height: 400px;
     border-radius: 16px;
     background-color: #f1f1ff;
@@ -92,6 +91,7 @@ const styles = {
     flex-wrap: wrap;
     font-size: 10px;
     width: 100%;
+    margin-bottom: -24px;
     &::after {
       content: '';
       width: 90px;
