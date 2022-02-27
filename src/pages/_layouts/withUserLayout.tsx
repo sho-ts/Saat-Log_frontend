@@ -1,48 +1,20 @@
-import { css } from '@emotion/react';
-import Head from 'next/head';
-import { PageTitle } from '@atoms';
-import { Header, Footer, Nav } from '@organisms';
-import { Container } from '@templates';
-import { useState } from 'react';
+import { NAV_ITEMS } from '@/consts';
+import { Layout } from '@templates';
 import Provider from '@/providers';
 
-const withUserLayout = (
+const withGuestLayout = (
   Page: {
     (): JSX.Element;
     getLayout?(page: React.ReactElement): JSX.Element;
   },
-  title?: string,
+  title: string,
 ) => {
-
   const UserLayout = (page: React.ReactElement) => {
-    const [navOpen, setNavOpen] = useState(false);
-
-    const handleNavOpen = () => {
-      setNavOpen(true);
-    };
-
-    const handleNavClose = () => {
-      setNavOpen(false);
-    };
-
     return (
       <Provider>
-        <Head>
-          <title>{title} | Saat Log</title>
-        </Head>
-        <Header />
-        <div
-          css={css`
-            padding: 32px 0;
-          `}
-        >
-          <Container>
-            <PageTitle>{title ?? 'Saat Log'}</PageTitle>
-            {page}
-          </Container>
-        </div>
-        <Nav isOpen={navOpen} handleNavOpen={handleNavOpen} handleNavClose={handleNavClose} />
-        <Footer />
+        <Layout menu={NAV_ITEMS.USER} title={title}>
+          {page}
+        </Layout>
       </Provider>
     );
   };
@@ -52,4 +24,4 @@ const withUserLayout = (
   return Page;
 };
 
-export default withUserLayout;
+export default withGuestLayout;
