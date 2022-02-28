@@ -1,10 +1,6 @@
 import ReduxProvider from './ReduxProvider';
 
-type Props = {
-  isGuest?: boolean;
-};
-
-const Provider: React.FC<Props> = ({ isGuest, children }) => (
+const Provider: React.FC = ({ children }) => (
   <ReduxProvider>{children}</ReduxProvider>
 );
 
