@@ -3,6 +3,7 @@ import type { ReactElement, ReactNode } from 'react';
 import type { NextPage } from 'next';
 import { css, Global } from '@emotion/react';
 import 'destyle.css';
+import Provider from '@/providers';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -16,7 +17,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return getLayout(
-    <>
+    <Provider>
       <Global
         styles={css`
           body {
@@ -27,7 +28,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         `}
       />
       <Component {...pageProps} />
-    </>
+    </Provider>
   );
 }
 export default MyApp;
