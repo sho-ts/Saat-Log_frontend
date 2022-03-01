@@ -1,7 +1,8 @@
 import { NAV_ITEMS } from '@/consts';
 import { Layout } from '@templates';
+import { AuthProvider } from '@/providers';
 
-const withGuestLayout = (
+const withUserLayout = (
   Page: {
     (): JSX.Element;
     getLayout?(page: React.ReactElement): JSX.Element;
@@ -10,9 +11,11 @@ const withGuestLayout = (
 ) => {
   const UserLayout = (page: React.ReactElement) => {
     return (
-      <Layout menu={NAV_ITEMS.USER} title={title}>
-        {page}
-      </Layout>
+      <AuthProvider>
+        <Layout menu={NAV_ITEMS.USER} title={title}>
+          {page}
+        </Layout>
+      </AuthProvider>
     );
   };
 
@@ -21,4 +24,4 @@ const withGuestLayout = (
   return Page;
 };
 
-export default withGuestLayout;
+export default withUserLayout;
