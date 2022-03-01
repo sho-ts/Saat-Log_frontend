@@ -1,6 +1,6 @@
 import type { Auth0Error } from 'auth0-js';
-import type { NextRouter } from 'next/router';
 import { WebAuth } from 'auth0-js';
+import { v4 } from 'uuid';
 
 class Auth {
   client: WebAuth;
@@ -32,11 +32,15 @@ class Auth {
   }
 
   signin(username: string, password: string) {
+    const nonce = v4();
+    localStorage.setItem('nonce', nonce);
+
     return new Promise<any | Auth0Error>((resolve, reject) => {
       this.client.login(
         {
           username,
           password,
+          nonce,
         },
         (error, result) => {
           error && reject(error);
@@ -53,31 +57,25 @@ class Auth {
     });
   }
 
-  getTokenParams(path: string): { [key: string]: string } | null {
-    if (!path.includes('#')) return null;
-
-    return Object.assign(
-      {},
-      ...path
-        .split('#')[1]
-        .split('&')
-        .map((tokenQuery) => {
-          const keyWithValue = tokenQuery.split('=');
-          const tokenObject: { [key: string]: string } = {};
-
-          tokenObject[`${keyWithValue[0]}`] = keyWithValue[1];
-
-          return tokenObject;
-        }),
-    );
+  getIdToken() {
+    return localStorage.getItem('idToken');
   }
 
-  setToken(tokenName: string, token: string) {
-    localStorage.setItem(tokenName, token);
-  }
+  checkIdToken() {
+    const idToken = localStorage.getItem('idToken');
+    const nonce = localStorage.getItem('nonce');
 
-  getToken(tokenName: string) {
-    return localStorage.getItem(tokenName);
+    return new Promise<boolean>((resolve, reject) => {
+      if (idToken && nonce) {
+        this.client.validateToken(idToken, nonce, (err, result) => {
+          result && resolve(true);
+
+          err && reject(err);
+        });
+      } else {
+        reject('IDトークンがないです');
+      }
+    });
   }
 }
 
