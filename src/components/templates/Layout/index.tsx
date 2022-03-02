@@ -1,6 +1,6 @@
 import type { IconType } from 'react-icons';
 import { css } from '@emotion/react';
-import { useState } from 'react';
+import { useModal } from '@/hooks';
 import Head from 'next/head';
 import { PageTitle } from '@atoms';
 import { Header, Footer, Nav } from '@organisms';
@@ -10,15 +10,7 @@ const Layout: React.FC<{
   title: string;
   menu: { href: string; icon: IconType; innerHTML: string }[];
 }> = ({ children, title, menu }) => {
-  const [navOpen, setNavOpen] = useState(false);
-
-  const handleNavOpen = () => {
-    setNavOpen(true);
-  };
-
-  const handleNavClose = () => {
-    setNavOpen(false);
-  };
+  const [isOpen, handleModalOpen, handleModalClose] = useModal();
 
   return (
     <>
@@ -38,9 +30,9 @@ const Layout: React.FC<{
       </div>
       <Nav
         menu={menu}
-        isOpen={navOpen}
-        handleNavOpen={handleNavOpen}
-        handleNavClose={handleNavClose}
+        isOpen={isOpen}
+        handleModalOpen={handleModalOpen}
+        handleModalClose={handleModalClose}
       />
       <Footer />
     </>
