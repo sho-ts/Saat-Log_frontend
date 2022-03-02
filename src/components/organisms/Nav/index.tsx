@@ -1,45 +1,39 @@
 import type { IconType } from 'react-icons';
 import { css } from '@emotion/react';
 import { NavItem } from '@atoms';
+import { Modal } from '@molecures';
 import { CgMenuGridO } from 'react-icons/cg';
 
 type Props = {
-  isOpen?: boolean;
-  handleNavOpen: () => void;
-  handleNavClose: () => void;
+  isOpen: boolean;
+  handleModalOpen: () => void;
+  handleModalClose: () => void;
   menu: { href: string; icon: IconType; innerHTML: string }[];
 };
 
-const Nav: React.FC<Props> = ({ isOpen, menu, handleNavOpen, handleNavClose }) => {
+const Nav: React.FC<Props> = ({ isOpen, menu, handleModalOpen, handleModalClose }) => {
   return (
     <>
-      <nav
-        css={css`
-          opacity: ${isOpen ? 1 : 0};
-          visibility: ${isOpen ? 'visible' : 'hidden'};
-          transition: all 0.3s;
+      <Modal
+        isOpen={isOpen}
+        handleModalClose={handleModalClose}
+        innerStyle={css`
+          width: calc(100% - 24px);
+          max-width: 360px;
+          max-height: 400px;
+          transform: ${isOpen ? 'translate(-50%, -50%)' : 'translate(-50%, -40%)'};
         `}
       >
-        <div onClick={handleNavClose} css={styles.bg} />
-        <div
-          css={[
-            styles.inner,
-            css`
-              transform: ${isOpen ? 'translate(-50%, -50%)' : 'translate(-50%, -40%)'};
-            `,
-          ]}
-        >
-          <ul css={styles.menu}>
-            {menu.map((item, index) => (
-              <NavItem key={index} onClick={handleNavClose} href={item.href} Icon={item.icon}>
-                {item.innerHTML}
-              </NavItem>
-            ))}
-          </ul>
-        </div>
-      </nav>
+        <ul css={styles.menu}>
+          {menu.map((item, index) => (
+            <NavItem key={index} onClick={handleModalClose} href={item.href} Icon={item.icon}>
+              {item.innerHTML}
+            </NavItem>
+          ))}
+        </ul>
+      </Modal>
       <button
-        onClick={handleNavOpen}
+        onClick={handleModalOpen}
         css={[
           styles.toggleButton,
           css`
@@ -55,30 +49,6 @@ const Nav: React.FC<Props> = ({ isOpen, menu, handleNavOpen, handleNavClose }) =
 };
 
 const styles = {
-  bg: css`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
-    z-index: 50000;
-    cursor: pointer;
-  `,
-  inner: css`
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transition: all 0.4s;
-    width: calc(100% - 24px);
-    max-width: 360px;
-    max-height: 400px;
-    border-radius: 16px;
-    background-color: #f1f1ff;
-    padding: 32px 24px;
-    box-shadow: 16px 16px 16px rgba(0, 0, 0, 0.1);
-    z-index: 50100;
-  `,
   menu: css`
     display: flex;
     align-items: flex-start;
