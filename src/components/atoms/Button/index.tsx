@@ -5,9 +5,10 @@ type Props = {
   styles?: SerializedStyles;
   algin?: 'left' | 'center' | 'right';
   onClick?: any;
+  disabled?: boolean;
 };
 
-const Button: React.FC<Props> = ({ onClick, styles, algin, children }) => {
+const Button: React.FC<Props> = ({ onClick, styles, algin, disabled, children }) => {
   return (
     <div
       css={css`
@@ -17,6 +18,7 @@ const Button: React.FC<Props> = ({ onClick, styles, algin, children }) => {
       <button
         type='button'
         onClick={onClick}
+        disabled={disabled}
         css={[
           css`
             box-shadow: -4px -4px 8px #ffffff, 4px 4px 8px rgba(100, 100, 150, 0.2);

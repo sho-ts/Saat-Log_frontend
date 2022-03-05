@@ -21,7 +21,6 @@ const Nav: React.FC<Props> = ({ isOpen, menu, handleModalOpen, handleModalClose 
           width: calc(100% - 24px);
           max-width: 360px;
           max-height: 400px;
-          transform: ${isOpen ? 'translate(-50%, -50%)' : 'translate(-50%, -40%)'};
         `}
       >
         <ul css={styles.menu}>
