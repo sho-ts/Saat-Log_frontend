@@ -50,6 +50,7 @@ const Modal: React.FC<Props> = ({
             position: fixed;
             top: 50%;
             left: 50%;
+            transform: ${isOpen ? 'translate(-50%, -50%)' : 'translate(-50%, -40%)'};
             transition: all 0.4s;
             border-radius: 16px;
             background-color: #f1f1ff;
