@@ -1,46 +1,36 @@
+import useSignUp from './hook';
+import { css } from '@emotion/react';
 import { Button, TextField, SubTitle } from '@atoms';
-import { FormItem } from '@molecures';
+import { Modal, FormItem } from '@molecures';
 import { FormContainer } from '@organisms';
 import { withGuestLayout } from '@layouts';
-import { css } from '@emotion/react';
-import { useState } from 'react';
-import { auth } from '@/auth';
-import { useRouter } from 'next/router';
 
 const SignUp = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [confirmPassword, setConfirmPassword] = useState<string>('******');
-  const [confirmModalIsOpen, setConfirmModalIsOpen] = useState<boolean>(false);
-  const router = useRouter();
-
-  const onClickSignUp = async () => {
-    try {
-      const res = await auth.signup(email, password);
-      router.push('/signin');
-    } catch(e) {
-      alert('登録に失敗');
-    }
-  };
-
-  const handleConfirmModalOpen = () => {
-    setConfirmModalIsOpen(true);
-  };
-
-  const handleConfirmModalClose = () => {
-    setConfirmModalIsOpen(false);
-  };
-
-  const onClickConfirm = () => {
-    if (!email || !password) return;
-
-    handleConfirmModalOpen();
-    setConfirmPassword(password.split('').reduce((acc, cur) => acc + '*', ''));
-  };
+  const {
+    name,
+    email,
+    password,
+    wait,
+    confirmPassword,
+    isOpen,
+    setName,
+    setEmail,
+    setPassword,
+    handleSignUp,
+    handleConfirm,
+    handleModalClose,
+  } = useSignUp();
 
   return (
     <>
       <FormContainer>
+        <FormItem heading='ニックネーム'>
+          <TextField
+            value={name}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+            type='text'
+          />
+        </FormItem>
         <FormItem heading='メールアドレス'>
           <TextField
             value={email}
@@ -56,7 +46,7 @@ const SignUp = () => {
           />
         </FormItem>
         <Button
-          onClick={onClickConfirm}
+          onClick={handleConfirm}
           styles={css`
             width: 130px;
           `}
@@ -64,76 +54,43 @@ const SignUp = () => {
           登録
         </Button>
       </FormContainer>
-      <div
-        css={css`
-          opacity: ${confirmModalIsOpen ? 1 : 0};
-          visibility: ${confirmModalIsOpen ? 'visible' : 'hidden'};
-          transition: all 0.3s;
-        `}
-      >
-        <div onClick={handleConfirmModalClose} css={styles.confirm.wrapper} />
-        <div css={styles.confirm.modal}>
-          <div
-            css={css`
-              text-align: center;
-            `}
-          >
-            <SubTitle>こちらの内容で登録しますか？</SubTitle>
-            <dl css={styles.confirm.items}>
-              <div css={styles.confirm.item}>
-                <dt css={styles.confirm.title}>Email</dt>
-                <dd>{email}</dd>
-              </div>
-              <div css={styles.confirm.item}>
-                <dt css={styles.confirm.title}>Password</dt>
-                <dd>{confirmPassword}</dd>
-              </div>
-            </dl>
-            <div css={styles.confirm.buttons}>
-              <Button
-                styles={css`
-                  margin-right: 16px;
-                `}
-                onClick={handleConfirmModalClose}
-              >
-                戻る
-              </Button>
-              <Button onClick={onClickSignUp}>登録</Button>
+      <Modal isOpen={isOpen} handleModalClose={handleModalClose}>
+        <div
+          css={css`
+            text-align: center;
+          `}
+        >
+          <SubTitle>こちらの内容で登録しますか？</SubTitle>
+          <dl css={styles.confirm.items}>
+            <div css={styles.confirm.item}>
+              <dt css={styles.confirm.title}>Email</dt>
+              <dd>{email}</dd>
             </div>
+            <div css={styles.confirm.item}>
+              <dt css={styles.confirm.title}>Password</dt>
+              <dd>{confirmPassword}</dd>
+            </div>
+          </dl>
+          <div css={styles.confirm.buttons}>
+            <Button
+              disabled={wait}
+              styles={css`
+                margin-right: 16px;
+              `}
+              onClick={handleModalClose}
+            >
+              戻る
+            </Button>
+            <Button onClick={handleSignUp}>登録</Button>
           </div>
         </div>
-      </div>
+      </Modal>
     </>
   );
 };
 
 const styles = {
   confirm: {
-    wrapper: css`
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.2);
-      z-index: 50000;
-      cursor: pointer;
-    `,
-    modal: css`
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      transition: all 0.4s;
-      width: calc(100% - 24px);
-      max-width: 500px;
-      max-height: 400px;
-      border-radius: 16px;
-      background-color: #f1f1ff;
-      padding: 32px 24px;
-      box-shadow: 16px 16px 16px rgba(0, 0, 0, 0.1);
-      z-index: 50100;
-    `,
     items: css`
       display: flex;
       flex-direction: column;
