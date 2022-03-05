@@ -13,11 +13,12 @@ const TextField: React.FC<Props> = ({ type, placeholder, value, onChange }) => {
     <input
       css={css`
         box-shadow: inset -4px -4px 2px #fff, inset 4px 4px 4px rgba(50, 50, 150, 0.1);
-        padding: 16px 16px;
+        padding: 14px 16px;
         display: block;
         width: 100%;
         border-radius: 32px;
         font-size: 16px;
+        line-height: 1.4;
       `}
       value={value}
       placeholder={placeholder}
