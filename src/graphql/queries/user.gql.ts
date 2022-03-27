@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const createUser = (name: string, authId: string) => {
+export const createUserQuery = (name: string, authId: string) => {
   return gql`
     mutation {
       createUser(params: {
@@ -12,3 +12,13 @@ export const createUser = (name: string, authId: string) => {
     }
   `;
 };
+
+export const getUserQuery = () => {
+  return gql`
+    query {
+      getUser(userId: null) {
+        name
+      }
+    }
+  `
+}
