@@ -1,4 +1,4 @@
-import { createUser } from '@/graphql/queries/user.gql';
+import { createUserQuery } from '@/graphql/queries/user.gql';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useMutation } from '@apollo/client';
@@ -14,7 +14,7 @@ const useSignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>('******');
   const [isOpen, handleModalOpen, handleModalClose] = useModal();
   const router = useRouter();
-  const [createUserMutation] = useMutation(createUser(name, authId));
+  const [createUserMutation] = useMutation(createUserQuery(name, authId));
 
   const handleSignUp = async () => {
     try {
