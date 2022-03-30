@@ -58,19 +58,26 @@ const SignUp = () => {
         <div
           css={css`
             text-align: center;
+            overflow: scroll;
+            max-width: 100%;
+            padding: 8px 0;
           `}
         >
           <SubTitle>こちらの内容で登録しますか？</SubTitle>
-          <dl css={styles.confirm.items}>
-            <div css={styles.confirm.item}>
-              <dt css={styles.confirm.title}>Email</dt>
-              <dd>{email}</dd>
-            </div>
-            <div css={styles.confirm.item}>
-              <dt css={styles.confirm.title}>Password</dt>
-              <dd>{confirmPassword}</dd>
-            </div>
-          </dl>
+          <table css={styles.confirm.items}>
+            <tr css={styles.confirm.item}>
+              <th css={styles.confirm.title}>Name</th>
+              <td css={styles.confirm.data}>{name}</td>
+            </tr>
+            <tr css={styles.confirm.item}>
+              <th css={styles.confirm.title}>Email</th>
+              <td css={styles.confirm.data}>{email}</td>
+            </tr>
+            <tr css={styles.confirm.item}>
+              <th css={styles.confirm.title}>Password</th>
+              <td css={styles.confirm.data}>{confirmPassword}</td>
+            </tr>
+          </table>
           <div css={styles.confirm.buttons}>
             <Button
               disabled={wait}
@@ -92,17 +99,17 @@ const SignUp = () => {
 const styles = {
   confirm: {
     items: css`
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       margin-bottom: 24px;
     `,
     item: css`
-      display: flex;
-      margin-bottom: 8px;
+      text-align: left;
+      max-width: calc(100% - 32px);
     `,
     title: css`
-      margin-right: 8px;
+      padding: 8px 16px 8px 0;
+    `,
+    data: css`
+      padding: 8px 0;
     `,
     buttons: css`
       display: flex;
