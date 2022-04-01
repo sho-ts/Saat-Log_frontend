@@ -9,18 +9,10 @@ const Auth = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (window.location.hash) {
-      auth.client.parseHash({ hash: window.location.hash }, (err, result) => {
-        err && router.push('/signin');
-
-        if (result) {
-          localStorage.setItem('idToken', `${result?.idToken}`);
-          router.push('/mypage');
-        }
-      });
-    } else {
-      router.push('/signin');
-    }
+    auth
+      .parseHash()
+      .then(() => router.push('/mypage'))
+      .catch(() => router.push('/signin'));
   }, []);
 
   return (
