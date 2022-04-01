@@ -8,12 +8,10 @@ export const CREATE_USER = gql`
   }
 `;
 
-export const getUserQuery = () => {
-  return gql`
-    query {
-      getUser(userId: null) {
-        name
-      }
+export const GET_CURRENT_USER = gql`
+  query {
+    getUser(userId: null) {
+      name
     }
-  `;
-};
+  }
+`;
