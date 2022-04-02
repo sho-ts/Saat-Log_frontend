@@ -3,15 +3,16 @@ import { FormItem } from '@molecures';
 import { FormContainer } from '@organisms';
 import { withGuestLayout } from '@layouts';
 import { css } from '@emotion/react';
-import { auth } from '@/auth';
 import { useState } from 'react';
+import useSignInModule from './singin.module';
 
 const SignIn = () => {
+  const { authService } = useSignInModule();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
   const onClickSignIn = async () => {
-    const res = await auth.signin(email, password);
+    const res = await authService.signin(email, password);
     console.log(res);
   };
 

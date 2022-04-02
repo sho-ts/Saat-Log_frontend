@@ -2,10 +2,21 @@ import type { Auth0Error, Auth0DecodedHash } from 'auth0-js';
 import { WebAuth } from 'auth0-js';
 import { v4 } from 'uuid';
 
-class Auth {
+/** @singleton */
+class AuthService {
   client: WebAuth;
 
-  constructor() {
+  private static instance: AuthService;
+
+  static getInstance() {
+    if (this.instance) {
+      return this.instance;
+    }
+
+    return new AuthService();
+  }
+
+  private constructor() {
     this.client = new WebAuth({
       domain: process.env.NEXT_PUBLIC_AUTH0_DOMAIN!,
       clientID: process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID!,
@@ -92,4 +103,4 @@ class Auth {
   }
 }
 
-export default Auth;
+export default AuthService;
