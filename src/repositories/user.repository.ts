@@ -2,6 +2,7 @@ import { gql } from '@apollo/client';
 import { useLazyQuery, useMutation } from '@apollo/client';
 
 class UserRepository {
+  /** @mutation */
   createUser() {
     return useMutation<{ name: string }>(gql`
       mutation CreateUser($name: String!, $authId: String!) {
@@ -12,6 +13,7 @@ class UserRepository {
     `);
   }
 
+  /** @lazyQuery */
   getCurrentUser() {
     return useLazyQuery<{ name: string }>(gql`
       query {
