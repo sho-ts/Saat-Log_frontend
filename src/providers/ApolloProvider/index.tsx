@@ -1,5 +1,5 @@
 import { ApolloProvider as Provider } from '@apollo/client';
-import useApolloProviderModule from './apolloProvider.module';
+import useApolloProviderModule from './ApolloProvider.module';
 
 const ApolloProvider: React.FC = ({ children }) => {
   const { apolloService } = useApolloProviderModule();

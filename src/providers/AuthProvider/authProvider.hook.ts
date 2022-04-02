@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import useAuthProviderModule from './authProvider.module';
+import useAuthProviderModule from './AuthProvider.module'
 
 const useAuthProvider = () => {
   const { authService } = useAuthProviderModule();
