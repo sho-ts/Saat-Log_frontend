@@ -1,17 +1,41 @@
-import type { Auth0Error } from 'auth0-js';
+import type { Auth0Error, Auth0DecodedHash } from 'auth0-js';
 import { WebAuth } from 'auth0-js';
 import { v4 } from 'uuid';
 
-class Auth {
+/** @singleton */
+class AuthService {
   client: WebAuth;
 
-  constructor() {
+  private static instance: AuthService;
+
+  static getInstance() {
+    if (this.instance) {
+      return this.instance;
+    }
+
+    return new AuthService();
+  }
+
+  private constructor() {
     this.client = new WebAuth({
       domain: process.env.NEXT_PUBLIC_AUTH0_DOMAIN!,
       clientID: process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID!,
       redirectUri: process.env.NEXT_PUBLIC_AUTH0_LOGIN_REDIRECT_URL!,
       scope: process.env.NEXT_PUBLIC_AUTH0_SCOPE,
       responseType: process.env.NEXT_PUBLIC_AUTH0_RESPONSE_TYPE,
+    });
+  }
+
+  parseHash() {
+    return new Promise<Auth0DecodedHash>((resolve, reject) => {
+      if (!window.location.hash) reject(new Error('hashがないです'));
+
+      this.client.parseHash({ hash: window.location.hash }, (err, result) => {
+        if (err || !result) reject(err || new Error('resultがないです'));
+
+        localStorage.setItem('idToken', `${result?.idToken}`);
+        resolve(result!);
+      });
     });
   }
 
@@ -79,4 +103,4 @@ class Auth {
   }
 }
 
-export default Auth;
+export default AuthService;

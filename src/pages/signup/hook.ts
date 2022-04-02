@@ -1,11 +1,10 @@
-import { CREATE_USER } from '@/graphql/queries/user.gql';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { useMutation } from '@apollo/client';
 import { useModal } from '@/hooks';
-import { auth } from '@/auth';
+import useSignUpModule from './signup.module';
 
 const useSignUp = () => {
+  const { userService, authService } = useSignUpModule();
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -13,13 +12,13 @@ const useSignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>('******');
   const [isOpen, handleModalOpen, handleModalClose] = useModal();
   const router = useRouter();
-  const [createUser] = useMutation(CREATE_USER);
+  const [createUser] = userService.createUser();
 
   const handleSignUp = async () => {
     try {
       setWait(true);
 
-      const res = await auth.signup(email, password);
+      const res = await authService.signup(email, password);
 
       await createUser({ variables: { name, authId: `auth0|${res.Id}` } });
       alert('確認メールを送信しました');

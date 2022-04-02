@@ -1,8 +1,10 @@
 import { ApolloProvider as Provider } from '@apollo/client';
-import { client } from '@/graphql';
+import useApolloProviderModule from './apolloProvider.module';
 
 const ApolloProvider: React.FC = ({ children }) => {
-  return <Provider client={client}>{children}</Provider>;
+  const { apolloService } = useApolloProviderModule();
+
+  return <Provider client={apolloService.client}>{children}</Provider>;
 };
 
 export default ApolloProvider;

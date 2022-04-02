@@ -1,26 +1,19 @@
-import { auth } from '@/auth';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Oval } from 'react-loader-spinner';
 import { css } from '@emotion/react';
 import Head from 'next/head';
+import useAuthModule from './auth.module';
 
 const Auth = () => {
+  const { authService } = useAuthModule();
   const router = useRouter();
 
   useEffect(() => {
-    if (window.location.hash) {
-      auth.client.parseHash({ hash: window.location.hash }, (err, result) => {
-        err && router.push('/signin');
-
-        if (result) {
-          localStorage.setItem('idToken', `${result?.idToken}`);
-          router.push('/mypage');
-        }
-      });
-    } else {
-      router.push('/signin');
-    }
+    authService
+      .parseHash()
+      .then(() => router.push('/mypage'))
+      .catch(() => router.push('/signin'));
   }, []);
 
   return (
