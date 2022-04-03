@@ -5,15 +5,14 @@ import { v4 } from 'uuid';
 /** @singleton */
 class AuthService {
   client: WebAuth;
-
   private static instance: AuthService;
 
   static getInstance() {
-    if (this.instance) {
-      return this.instance;
-    }
+    if (this.instance) return this.instance;
 
-    return new AuthService();
+    this.instance = new AuthService();
+    
+    return this.instance;
   }
 
   private constructor() {
