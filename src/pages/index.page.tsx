@@ -1,2 +1,2 @@
-import LP from './lp';
+import LP from './lp/index.page'
 export default LP;
