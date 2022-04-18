@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-const SubTitle: React.FC = ({ children }) => {
+const SubTitle: React.VFC = ({ children }) => {
   return (
     <h2
       css={css`

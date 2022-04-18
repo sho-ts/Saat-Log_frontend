@@ -9,7 +9,7 @@ type Props = {
   handleModalClose: () => void;
 };
 
-const Modal: React.FC<Props> = ({
+const Modal: React.VFC<Props> = ({
   wrapperStyle,
   bgStyle,
   innerStyle,

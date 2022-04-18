@@ -5,10 +5,10 @@ import Link from 'next/link';
 type Props = {
   Icon: IconType;
   onClick?: any;
-  href: string,
+  href: string;
 };
 
-const NavIcon: React.FC<Props> = ({ Icon, children, onClick, href }) => {
+const NavIcon: React.VFC<Props> = ({ Icon, children, onClick, href }) => {
   return (
     <li
       onClick={onClick}
@@ -23,9 +23,11 @@ const NavIcon: React.FC<Props> = ({ Icon, children, onClick, href }) => {
       `}
     >
       <Link href={href} passHref>
-        <a css={css`
-          display: block;
-        `}>
+        <a
+          css={css`
+            display: block;
+          `}
+        >
           <div
             css={css`
               height: 70px;

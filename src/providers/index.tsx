@@ -1,7 +1,7 @@
 import ReduxProvider from './ReduxProvider';
 import ApolloProvider from './ApolloProvider';
 
-const Provider: React.FC = ({ children }) => (
+const Provider: React.VFC = ({ children }) => (
   <ReduxProvider>
     <ApolloProvider>{children}</ApolloProvider>
   </ReduxProvider>

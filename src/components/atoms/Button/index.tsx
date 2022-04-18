@@ -8,7 +8,7 @@ type Props = {
   disabled?: boolean;
 };
 
-const Button: React.FC<Props> = ({ onClick, styles, algin, disabled, children }) => {
+const Button: React.VFC<Props> = ({ onClick, styles, algin, disabled, children }) => {
   return (
     <div
       css={css`

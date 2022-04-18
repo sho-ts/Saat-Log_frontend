@@ -4,7 +4,7 @@ type Props = {
   heading?: string;
 };
 
-const FormItem: React.FC<Props> = ({ children, heading }) => {
+const FormItem: React.VFC<Props> = ({ children, heading }) => {
   return (
     <div
       css={css`

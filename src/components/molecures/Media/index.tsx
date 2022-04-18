@@ -5,7 +5,7 @@ type Props = {
   reverse?: boolean;
 };
 
-const Media: React.FC<Props> = ({ src, reverse, children }) => {
+const Media: React.VFC<Props> = ({ src, reverse, children }) => {
   return (
     <div css={[styles.base, reverse && styles.reverse]}>
       <div css={styles.image} style={{ backgroundImage: src }} />
