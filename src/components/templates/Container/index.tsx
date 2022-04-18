@@ -1,6 +1,8 @@
 import { css } from '@emotion/react';
 
-const Container: React.FC = ({ children }) => {
+const Container: React.VFC<{
+  children?: React.ReactNode;
+}> = ({ children }) => {
   return (
     <div
       css={css`

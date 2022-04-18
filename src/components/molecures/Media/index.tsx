@@ -3,9 +3,10 @@ import { css } from '@emotion/react';
 type Props = {
   src?: string;
   reverse?: boolean;
+  children?: React.ReactNode;
 };
 
-const Media: React.FC<Props> = ({ src, reverse, children }) => {
+const Media: React.VFC<Props> = ({ src, reverse, children }) => {
   return (
     <div css={[styles.base, reverse && styles.reverse]}>
       <div css={styles.image} style={{ backgroundImage: src }} />

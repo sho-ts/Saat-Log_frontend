@@ -1,6 +1,8 @@
-import useAuthProvider from './AuthProvider.hook';
+import useAuthProvider from './authProvider.hook';
 
-const AuthProvider: React.FC = ({ children }) => {
+const AuthProvider: React.VFC<{
+  children?: React.ReactNode;
+}> = ({ children }) => {
   const { isChecked } = useAuthProvider();
 
   return isChecked ? <>{children}</> : <></>;

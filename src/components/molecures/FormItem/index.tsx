@@ -2,9 +2,10 @@ import { css } from '@emotion/react';
 
 type Props = {
   heading?: string;
+  children?: React.ReactNode;
 };
 
-const FormItem: React.FC<Props> = ({ children, heading }) => {
+const FormItem: React.VFC<Props> = ({ children, heading }) => {
   return (
     <div
       css={css`

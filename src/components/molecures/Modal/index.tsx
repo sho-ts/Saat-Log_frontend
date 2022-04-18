@@ -7,9 +7,10 @@ type Props = {
   innerStyle?: SerializedStyles;
   isOpen: boolean;
   handleModalClose: () => void;
+  children?: React.ReactNode;
 };
 
-const Modal: React.FC<Props> = ({
+const Modal: React.VFC<Props> = ({
   wrapperStyle,
   bgStyle,
   innerStyle,

@@ -11,7 +11,7 @@ type Props = {
   menu: { href: string; icon: IconType; innerHTML: string }[];
 };
 
-const Nav: React.FC<Props> = ({ isOpen, menu, handleModalOpen, handleModalClose }) => {
+const Nav: React.VFC<Props> = ({ isOpen, menu, handleModalOpen, handleModalClose }) => {
   return (
     <>
       <Modal

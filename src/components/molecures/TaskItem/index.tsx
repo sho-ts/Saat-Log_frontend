@@ -8,7 +8,7 @@ type Props = {
   isActive?: boolean;
 };
 
-const TaskItem: React.FC<Props> = ({ name, target, progress, startedAt, isActive }) => {
+const TaskItem: React.VFC<Props> = ({ name, target, progress, startedAt, isActive }) => {
   return (
     <li
       css={css`

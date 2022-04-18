@@ -6,9 +6,10 @@ import { PageTitle } from '@atoms';
 import { Header, Footer, Nav } from '@organisms';
 import { Container } from '@templates';
 
-const Layout: React.FC<{
+const Layout: React.VFC<{
   title: string;
   menu: { href: string; icon: IconType; innerHTML: string }[];
+  children?: React.ReactNode;
 }> = ({ children, title, menu }) => {
   const [isOpen, handleModalOpen, handleModalClose] = useModal();
 

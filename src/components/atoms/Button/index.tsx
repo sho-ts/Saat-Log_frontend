@@ -6,9 +6,10 @@ type Props = {
   algin?: 'left' | 'center' | 'right';
   onClick?: any;
   disabled?: boolean;
+  children?: React.ReactNode;
 };
 
-const Button: React.FC<Props> = ({ onClick, styles, algin, disabled, children }) => {
+const Button: React.VFC<Props> = ({ onClick, styles, algin, disabled, children }) => {
   return (
     <div
       css={css`

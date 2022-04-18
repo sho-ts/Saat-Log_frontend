@@ -65,18 +65,20 @@ const SignUp = () => {
         >
           <SubTitle>こちらの内容で登録しますか？</SubTitle>
           <table css={styles.confirm.items}>
-            <tr css={styles.confirm.item}>
-              <th css={styles.confirm.title}>Name</th>
-              <td css={styles.confirm.data}>{name}</td>
-            </tr>
-            <tr css={styles.confirm.item}>
-              <th css={styles.confirm.title}>Email</th>
-              <td css={styles.confirm.data}>{email}</td>
-            </tr>
-            <tr css={styles.confirm.item}>
-              <th css={styles.confirm.title}>Password</th>
-              <td css={styles.confirm.data}>{confirmPassword}</td>
-            </tr>
+            <tbody>
+              <tr css={styles.confirm.item}>
+                <th css={styles.confirm.title}>Name</th>
+                <td css={styles.confirm.data}>{name}</td>
+              </tr>
+              <tr css={styles.confirm.item}>
+                <th css={styles.confirm.title}>Email</th>
+                <td css={styles.confirm.data}>{email}</td>
+              </tr>
+              <tr css={styles.confirm.item}>
+                <th css={styles.confirm.title}>Password</th>
+                <td css={styles.confirm.data}>{confirmPassword}</td>
+              </tr>
+            </tbody>
           </table>
           <div css={styles.confirm.buttons}>
             <Button

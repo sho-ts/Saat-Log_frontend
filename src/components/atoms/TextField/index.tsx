@@ -8,7 +8,7 @@ type Props = {
   onChange?: any;
 };
 
-const TextField: React.FC<Props> = ({ type, placeholder, value, onChange }) => {
+const TextField: React.VFC<Props> = ({ type, placeholder, value, onChange }) => {
   return (
     <input
       css={css`

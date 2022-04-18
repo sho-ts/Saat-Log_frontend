@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-const Footer: React.FC = () => {
+const Footer: React.VFC = () => {
   return (
     <footer css={styles.base}>
       <p css={styles.logo}>Saat Log</p>
