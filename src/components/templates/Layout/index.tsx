@@ -9,6 +9,7 @@ import { Container } from '@templates';
 const Layout: React.VFC<{
   title: string;
   menu: { href: string; icon: IconType; innerHTML: string }[];
+  children?: React.ReactNode;
 }> = ({ children, title, menu }) => {
   const [isOpen, handleModalOpen, handleModalClose] = useModal();
 

@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 
 type Props = {
   heading?: string;
+  children?: React.ReactNode;
 };
 
 const FormItem: React.VFC<Props> = ({ children, heading }) => {

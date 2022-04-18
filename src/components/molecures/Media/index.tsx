@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 type Props = {
   src?: string;
   reverse?: boolean;
+  children?: React.ReactNode;
 };
 
 const Media: React.VFC<Props> = ({ src, reverse, children }) => {

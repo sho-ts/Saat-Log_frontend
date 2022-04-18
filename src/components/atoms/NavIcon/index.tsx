@@ -6,6 +6,7 @@ type Props = {
   Icon: IconType;
   onClick?: any;
   href: string;
+  children?: React.ReactNode;
 };
 
 const NavIcon: React.VFC<Props> = ({ Icon, children, onClick, href }) => {

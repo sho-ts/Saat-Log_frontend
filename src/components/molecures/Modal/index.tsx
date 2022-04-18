@@ -7,6 +7,7 @@ type Props = {
   innerStyle?: SerializedStyles;
   isOpen: boolean;
   handleModalClose: () => void;
+  children?: React.ReactNode;
 };
 
 const Modal: React.VFC<Props> = ({
