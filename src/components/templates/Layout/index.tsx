@@ -7,7 +7,7 @@ import { Header, Footer, Nav } from '@organisms';
 import { Container } from '@templates';
 
 const Layout: React.VFC<{
-  title: string;
+  title?: string;
   menu: { href: string; icon: IconType; innerHTML: string }[];
   children?: React.ReactNode;
 }> = ({ children, title, menu }) => {
@@ -15,9 +15,7 @@ const Layout: React.VFC<{
 
   return (
     <>
-      <Head>
-        <title>{title} | Saat Log</title>
-      </Head>
+      <Head>{title && <title>{title} | Saat Log</title>}</Head>
       <Header />
       <div
         css={css`
@@ -25,7 +23,7 @@ const Layout: React.VFC<{
         `}
       >
         <Container>
-          <PageTitle>{title}</PageTitle>
+          {title && <PageTitle>{title}</PageTitle>}
           {children}
         </Container>
       </div>

@@ -7,7 +7,7 @@ const withUserLayout = (
     (): JSX.Element;
     getLayout?(page: React.ReactElement): JSX.Element;
   },
-  title: string,
+  title?: string,
 ) => {
   const UserLayout = (page: React.ReactElement) => {
     return (
