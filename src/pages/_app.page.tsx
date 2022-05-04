@@ -16,7 +16,7 @@ type AppPropsWithLayout = AppProps & {
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
-  return getLayout(
+  return (
     <Provider>
       <Global
         styles={css`
@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
           }
         `}
       />
-      <Component {...pageProps} />
+      {getLayout(<Component {...pageProps} />)}
     </Provider>
   );
 }
