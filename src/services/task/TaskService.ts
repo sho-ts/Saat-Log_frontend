@@ -1,4 +1,5 @@
 import { TaskRepository } from '@/repositories';
+import { useLazyQuery, useMutation } from '@apollo/client';
 
 class TaskService {
   readonly repository: TaskRepository;
@@ -7,8 +8,8 @@ class TaskService {
     this.repository = repository;
   }
 
-  addTask() {
-    return this.repository.addTask();
+  useAddTaskMutation() {
+    return useMutation<{ name: string }>(this.repository.ADD_TASK);
   }
 }
 

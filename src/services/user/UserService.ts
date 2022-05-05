@@ -1,4 +1,5 @@
 import { UserRepository } from '@/repositories';
+import { useLazyQuery, useMutation } from '@apollo/client';
 
 class UserService {
   readonly repository: UserRepository;
@@ -7,12 +8,12 @@ class UserService {
     this.repository = repository;
   }
 
-  getCurrentUser() {
-    return this.repository.getCurrentUser();
+  useCreateUserMutation() {
+    return useMutation(this.repository.CREATE_USER);
   }
 
-  createUser() {
-    return this.repository.createUser();
+  useCurrentUserQuery() {
+    return useLazyQuery<{ name: string }>(this.repository.GET_USER);
   }
 }
 
