@@ -12,7 +12,7 @@ const useSignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>('******');
   const [isOpen, handleModalOpen, handleModalClose] = useModal();
   const router = useRouter();
-  const [createUser] = userService.createUser();
+  const [createUser] = userService.useCreateUserMutation();
 
   const handleSignUp = async () => {
     try {
