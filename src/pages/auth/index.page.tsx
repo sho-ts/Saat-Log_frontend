@@ -6,13 +6,17 @@ import Head from 'next/head';
 import useAuthModule from './auth.module';
 
 const Auth = () => {
-  const { authService } = useAuthModule();
+  const { authService, userService } = useAuthModule();
+  const [currentUserQuery] = userService.useCurrentUserQuery();
   const router = useRouter();
 
   useEffect(() => {
     authService
       .parseHash()
-      .then(() => router.push('/mypage'))
+      .then(() => {
+        currentUserQuery();
+        router.push('/mypage');
+      })
       .catch(() => router.push('/signin'));
   }, []);
 
