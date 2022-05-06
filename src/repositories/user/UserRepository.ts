@@ -15,6 +15,7 @@ class UserRepository {
     query {
       getUser(userId: null) {
         name
+        userId
       }
     }
   `;
